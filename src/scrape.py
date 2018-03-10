@@ -27,7 +27,7 @@ def run():
             trash_days_dict = {}
             address = str(row["Address"]) + ", Brooklyn, NY, USA"
             print("checking address %s" % str(index+1))
-            trash_days = scrape_util.getTrashDays(address, screenshot=True)
+            trash_days = scrape_util.getTrashDays(address, screenshot=False)
             trash_days_dict[address] = trash_days
             trash_days_list.append(trash_days_dict)
 
