@@ -1,16 +1,18 @@
 # better-walk
-Attempt to optimize a walk of a certain distance by avoiding trash, construction, etc.
+Attempt to optimize a walk of a certain distance by avoiding trash set out on the curb.
 
-Currently not functioning. Need different way to select correct day of the week, because copy-paste method does not work in either browser.
+Current functionality is just a web scrape of the NYDOT website to obtain the trash days for 11215.
+No walk optimization, yet.
 
 Addresses obtained from https://www.melissadata.com/lookups/zipstreet.asp?InData=11215&c=3&l=U   
 Address list currently only has numbered streets in 11215 zip code.
+
 
 # Installation
 
 Clone the repo onto your machine with the following command:
 
-$ git checkout https://github.com/CloudburstCode/passiv.git
+$ git clone https://github.com/wseife/better-walk.git
 
 
 # Dependencies
