@@ -1,1 +1,1 @@
-BASE_DIR = "/Users/wyattshapiro/projects/dog_walk/"
+BASE_DIR = "/Users/williamseife/Documents/GitHub/better-walk/"

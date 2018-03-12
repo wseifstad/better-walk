@@ -11,7 +11,7 @@ def initChromeDriver():
     driver.set_page_load_timeout(100000)
     driver.set_window_size(1024, 1024)
     driver.switch_to_window(driver.current_window_handle)
-    driver.implicitly_wait(10)
+    driver.implicitly_wait(5)
     return driver
 
 
@@ -28,7 +28,7 @@ def getTrashDays(address, screenshot=False):
     query the DOT website
     create list of trash days
 
-    Returns trash_days_df: pandas df of trash days for address, None otherwise
+    Returns list of trash days for address, None otherwise
     """
     try:
 
@@ -53,6 +53,7 @@ def getTrashDays(address, screenshot=False):
 
     except Exception, e:
         print(e)
+        print("-"*30)
         driver.close()
         return None
 
