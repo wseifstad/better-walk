@@ -2,7 +2,7 @@ from geopy.geocoders import GoogleV3
 import gmplot
 
 #need way to secretly keep API keys in script
-geocode_API_key = "AIzaSyCh6t8QpCuul-Qj926UE6xPE4P7gYzJAaM"
+geocode_API_key = "[omitted]"
 javascript_API_key = "[omitted]"
 
 geo = GoogleV3(api_key = geocode_API_key)
