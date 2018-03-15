@@ -46,12 +46,10 @@ def getTrashDays(address, driver, screenshot=False):
         if screenshot:
             getTrashDaysScreenshot(driver, address)
         print("scraped trash days: %s" % trash_days_list)
-        print("-"*30)
         return trash_days_list
 
     except Exception, e:
         print(e)
-        print("-"*30)
         return None
 
 

@@ -1,10 +1,8 @@
-import pandas as pd
-import constants
 from geopy.geocoders import GoogleV3
 import gmplot
 
 #need way to secretly keep API keys in script
-geocode_API_key = "[omitted]"
+geocode_API_key = "AIzaSyCh6t8QpCuul-Qj926UE6xPE4P7gYzJAaM"
 javascript_API_key = "[omitted]"
 
 geo = GoogleV3(api_key = geocode_API_key)
@@ -22,8 +20,14 @@ color = {"MON": "#FF0000", #Red
         }  
 
 def geocode(address):
-    code = geo.geocode(address)
-    return code.latitude, code.longitude
+    try:
+        code = geo.geocode(address)
+        print("geocoded: %s, %s" % (code.latitude, code.longitude))
+        return code.latitude, code.longitude
+    except Exception, e:
+        print(e)
+        print("geocode failed")
+        return None, None
 
 def scatterPlot_and_writeHTML(day,lat_list,lon_list):
     try:
