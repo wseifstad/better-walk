@@ -22,7 +22,7 @@ def getTrashUrl(address):
     return url
 
 
-def getTrashDays(address, screenshot=False):
+def getTrashDays(address, driver, screenshot=False):
     """
     Creat URL from address
     query the DOT website
@@ -34,7 +34,6 @@ def getTrashDays(address, screenshot=False):
 
         print(address)
         url = getTrashUrl(address)
-        driver = initChromeDriver()
         driver.get(url)
         collection_days_table_soup = driver.find_element_by_id("desktopTable")
         collection_days_table_html = collection_days_table_soup.get_attribute('outerHTML')
@@ -46,7 +45,6 @@ def getTrashDays(address, screenshot=False):
                 trash_days_list.append(index)
         if screenshot:
             getTrashDaysScreenshot(driver, address)
-        driver.close()
         print("scraped trash days: %s" % trash_days_list)
         print("-"*30)
         return trash_days_list
@@ -54,7 +52,6 @@ def getTrashDays(address, screenshot=False):
     except Exception, e:
         print(e)
         print("-"*30)
-        driver.close()
         return None
 
 

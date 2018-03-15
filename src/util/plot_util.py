@@ -10,7 +10,7 @@ javascript_API_key = "[omitted]"
 geo = GoogleV3(api_key = geocode_API_key)
 
 
-#days_of_week = ['MON','TUE','WED','THU','FRI','SAT','SUN']
+days_of_week = ['MON','TUE','WED','THU','FRI','SAT','SUN']
 
 color = {"MON": "#FF0000", #Red
         "TUE": "#008000",  #Green

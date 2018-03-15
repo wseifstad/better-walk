@@ -5,7 +5,7 @@ import time
 
 start_time = time.time()
 
-CSV_PATH = constants.BASE_DIR + "src/address_with_days.csv"
+CSV_PATH = constants.BASE_DIR + "src/address_with_days1.csv"
 
 def run():
     """
@@ -18,23 +18,24 @@ def run():
     """
     trash_days_dict = {}
     test_flag = False
+    driver = scrape_util.initChromeDriver()
 
     if test_flag:
         trash_days_dict = {}
         test_address = "160 15th Street, Brooklyn, NY, USA"
-        trash_days = scrape_util.getTrashDays(test_address, screenshot=True)
+        trash_days = scrape_util.getTrashDays(test_address, driver, screenshot=False)
         trash_days_dict[test_address] = trash_days
 
     else:
         address_list_path = constants.BASE_DIR + "src/Addresses11215.csv"
-        address_list = pd.read_csv(address_list_path)[:]
+        address_list = pd.read_csv(address_list_path)[:10]
         print("searching %s addresses" % len(address_list.index))
 
         for index, row in address_list.iterrows():
             address = str(row["Address"]) + ", Brooklyn, NY, USA"
             print("checking address %s of %s" % (str(index+1) , len(address_list)))
             print("program has been running for %s seconds" % str(time.time() - start_time))
-            trash_days = scrape_util.getTrashDays(address, screenshot=False)
+            trash_days = scrape_util.getTrashDays(address, driver, screenshot=False)
             trash_days_dict[address] = trash_days
         
         ## clear addresses with NoneType trash_days
@@ -49,7 +50,9 @@ def run():
 
         trash_df.to_csv(CSV_PATH, index = False)
         print("total time = %s seconds" % str(time.time() - start_time))
+        driver.close()
         return trash_df
+    
 
 
 if __name__ == "__main__":
