@@ -1,1 +1,2 @@
-BASE_DIR = "/Users/williamseife/Documents/GitHub/better-walk/"
+import os
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))

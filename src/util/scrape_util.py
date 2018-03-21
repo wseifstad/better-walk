@@ -14,24 +14,21 @@ def initChromeDriver():
     driver.implicitly_wait(5)
     return driver
 
-
 def getTrashUrl(address):
     base_url = "http://www1.nyc.gov/assets/dsny/site/collectionSchedule/"
     address_url = address.replace(" ", "%20")
     url = base_url + address_url
     return url
 
-
 def getTrashDays(address, driver, screenshot=False):
     """
-    Creat URL from address
-    query the DOT website
+    Create URL from address
+    query the NYDOT website
     create list of trash days
 
     Returns list of trash days for address, None otherwise
     """
     try:
-
         print(address)
         url = getTrashUrl(address)
         driver.get(url)
@@ -47,11 +44,10 @@ def getTrashDays(address, driver, screenshot=False):
             getTrashDaysScreenshot(driver, address)
         print("scraped trash days: %s" % trash_days_list)
         return trash_days_list
-
     except Exception, e:
         print(e)
+        print("-"*30)
         return None
-
 
 def getTrashDaysScreenshot(driver, address):
     """
@@ -69,3 +65,15 @@ def getTrashDaysScreenshot(driver, address):
         print(e)
         print("screenshot failed")
         return False
+
+def geocode(address,geocode_API_key):
+    geo = GoogleV3(api_key = geocode_API_key)
+    try:
+        code = geo.geocode(address)
+        print("geocoded: %s, %s" % (code.latitude, code.longitude))
+        return code.latitude, code.longitude
+    except Exception, e:
+        print(e)
+        print("geocode failed")
+        print("-"*30)
+        return None, None
