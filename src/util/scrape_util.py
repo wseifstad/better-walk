@@ -1,9 +1,10 @@
+import os.path
 import pandas as pd
+from geopy.geocoders import GoogleV3
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
+import APIkeys
 import constants
-
-SCREENSHOT_DIR = constants.BASE_DIR + "src/screenshots/"
 
 def initChromeDriver():
     driver = webdriver.Chrome()
@@ -56,6 +57,7 @@ def getTrashDaysScreenshot(driver, address):
 
     Returns True if function screenshotted successfully, False otherwise
     """
+    SCREENSHOT_DIR = constants.BASE_DIR + "src/screenshots/"
     try:
         driver.save_screenshot(SCREENSHOT_DIR + address + '.png')
         print("screenshot success")
@@ -66,8 +68,8 @@ def getTrashDaysScreenshot(driver, address):
         print("screenshot failed")
         return False
 
-def geocode(address,geocode_API_key):
-    geo = GoogleV3(api_key = geocode_API_key)
+def geocode(address):
+    geo = GoogleV3(api_key = APIkeys.geocode_API_key)
     try:
         code = geo.geocode(address)
         print("geocoded: %s, %s" % (code.latitude, code.longitude))
@@ -77,3 +79,30 @@ def geocode(address,geocode_API_key):
         print("geocode failed")
         print("-"*30)
         return None, None
+
+def writeCSV(object_list):
+    """create pandas dataframe and write to csv"""
+    dict_list = []
+    address_df = pd.DataFrame(columns = ["address","lat","lng","trash_days"])
+    for address in object_list:
+        for day in address.get_trash_days():
+            dict_list.append(
+                {
+                "address": address.get_address(),
+                "lat": address.get_lat(),
+                "lng": address.get_lng(),
+                "trash_day": day
+                }
+            )
+    address_df = pd.DataFrame(dict_list)
+    
+    #First, check to make sure you are not overwriting a preexisting file.
+    CSV_PATH = constants.BASE_DIR + "/src/address_df"
+    if os.path.isfile(CSV_PATH + ".csv"):
+        suffix = 1
+        while os.path.isfile(CSV_PATH + str(suffix) + ".csv"):
+            suffix += 1
+        address_df.to_csv(CSV_PATH + str(suffix) + ".csv", index = False)
+    else:
+        address_df.to_csv(CSV_PATH + ".csv", index = False)
+    return

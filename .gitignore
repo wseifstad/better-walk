@@ -4,3 +4,4 @@ venv/
 *.png
 *.html
 *.log
+APIkeys.py

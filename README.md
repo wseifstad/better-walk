@@ -31,16 +31,18 @@ $ pip install -r requirements.txt
 See https://virtualenv.pypa.io/en/stable/ for more information.
 
 
-# Configuration
+# Google Maps API key
 
-In order to configure the system you'll need a constants.py file. It should live
-in the 'src' folder and its contents should include the following:
+In order to run the script, you need Google Maps Geocoding and a Google Maps JavaScript API keys.
 
-BASE_DIR = '/path/to/root/dir/'
+You can create a project and obtain one for free at the following links:
+https://developers.google.com/maps/documentation/geocoding/
+https://developers.google.com/maps/documentation/javascript/
 
-Let's explain these in detail:
+Then, create a file "APIkeys.py" in the /src directory with the following structure:
 
-BASE_DIR is the path to the root code directory on your local machine.
+geocode_API_key = "[insert API key]"
+javascript_API_key = "[insert API key]"
 
 
 # Usage

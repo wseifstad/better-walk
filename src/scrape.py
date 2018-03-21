@@ -4,8 +4,6 @@ import util.plot_util as plot_util
 import util.scrape_util as scrape_util
 from model import Address
 
-#Enter your Google Maps Geocode API Key here
-geocode_API_key = "xxxxxxx" 
 
 def run():
     """
@@ -21,7 +19,7 @@ def run():
     object_list = []
 
     address_list_path = constants.BASE_DIR + "/src/Addresses11215.csv"
-    address_list = pd.read_csv(address_list_path)[:10]
+    address_list = pd.read_csv(address_list_path)[:2]
     print("searching %s addresses" % len(address_list.index))
 
     for index, row in address_list.iterrows():
@@ -33,13 +31,16 @@ def run():
             continue
 
         #Geocode address.
-        lat,lng = scrape_util.geocode(address,geocode_API_key)
+        lat,lng = scrape_util.geocode(address)
         if None in (lat,lng):
             continue
 
         #Initialize Address object and add to list only if scrape and geocode are successful.
         object_list.append(Address(address,lat,lng,trash_days))
-        
+    
+    #save address dataframe as a CSV file
+    scrape_util.writeCSV(object_list)
+
     driver.close()
 
 if __name__ == "__main__":
