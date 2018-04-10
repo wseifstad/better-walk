@@ -1,6 +1,5 @@
 import pandas as pd
 import constants
-import util.plot_util as plot_util
 import util.scrape_util as scrape_util
 from model import Address
 
