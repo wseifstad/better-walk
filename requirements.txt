@@ -1,7 +1,8 @@
 beautifulsoup4==4.6.0
-bs4==0.0.1
 certifi==2018.1.18
 chardet==3.0.4
+geopy==1.11.0
+gmplot==1.0.5
 html5lib==1.0.1
 idna==2.6
 lxml==4.1.1

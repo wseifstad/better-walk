@@ -1,1 +1,2 @@
-BASE_DIR = "/Users/wyattshapiro/projects/dog_walk/"
+import os
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
