@@ -30,6 +30,10 @@ $ pip install -r requirements.txt
 
 See https://virtualenv.pypa.io/en/stable/ for more information.
 
+In addition, you need to have chromedriver installed in $PATH for selenium to work:
+
+See https://sites.google.com/a/chromium.org/chromedriver/downloads for installation and information.
+
 
 # Google Maps API key
 
@@ -41,9 +45,10 @@ https://developers.google.com/maps/documentation/javascript/
 
 Then, create a file "APIkeys.py" in the /src directory with the following structure:
 
+```python
 geocode_API_key = "[insert API key]"
 javascript_API_key = "[insert API key]"
-
+```
 
 # Usage
 
