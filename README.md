@@ -1,11 +1,12 @@
 # better-walk
 Attempt to optimize a walk of a certain distance by avoiding trash set out on the curb.
 
-Current functionality is just a web scrape of the NYDOT website to obtain the trash days for 11215.
+Current functionality is a web scrape of the NYDOT website to obtain the trash days for 11215 and a geocoding/plot of the corresponding addresses.
 No walk optimization, yet.
 
-Addresses obtained from https://www.melissadata.com/lookups/zipstreet.asp?InData=11215&c=3&l=U   
-Address list currently only has numbered streets in 11215 zip code.
+For a brief analysis of the trash data being used, check out the jupyter notebook in the /src directory. On GitHub, you're only able to see the static html rendering, but we've plotted the trash pickup days to each address in 11215 with an inline widget:
+
+![Jupyter Widget](https://github.com/wseife/better-walk/blob/address_object/src/map_scatter1.gif "Jupyter Widget")
 
 
 # Installation
